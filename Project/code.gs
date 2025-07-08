@@ -1,11 +1,11 @@
 function doGet(e) {
-  const ss = SpreadsheetApp.openById("<作成したスプレッドシートID>");
+  const sheet = SpreadsheetApp.getActiveSpreadsheet();
 
   const tag = e.parameter.tag;
   const id = e.parameter.id;
   if (!tag || !id) return sendTransparentGif(); // tagまたはidが無ければ無視
 
-  const sheet = ss.getSheetByName(tag);
+  const sheet = sheet.getSheetByName(tag);
   if (!sheet) return sendTransparentGif(); // シートが存在しなければ無視
 
   const expectedId = sheet.getRange("E1").getValue();
